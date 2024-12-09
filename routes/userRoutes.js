@@ -7,6 +7,7 @@ import {
   loginUser,
   updateUser,
 } from "../controllers/userController.js";
+import { validateUser } from "../middlewares/validateUser.js";
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/create", createUser);
-router.get("/all-users", getAllUser);
+router.get("/all-users",validateUser, getAllUser);
 router.get("/:id", getSingleUser);
 router.patch("/update/:id", updateUser);
 router.delete("/delete/:id", deleteUser);
